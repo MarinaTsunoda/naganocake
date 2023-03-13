@@ -1,2 +1,42 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <h4 class="m-3"><span class="bg-light">商品新規登録</span></h4>
+      
+      <%= form_with model: @item, url: admin_items_path do |f| %>
+        <table cellpadding="5" class="w-75 mx-auto">
+          <tr>
+            <td>商品画像</td>
+            <td><%= f.file_field :image, accept:"image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :'商品名' %></td>
+            <td><%= f.text_field :name, size: 40, placeholder: "商品名" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :'商品説明' %></td>
+            <td><%= f.text_area :introduction, size: "40x5", placeholder: "ここに説明文を記述します" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :'ジャンル' %></td>
+            <td><%= f.select :genre, @genres, include_blank: '--選択してください--' %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :'税抜価格' %></td>
+            <td><%= f.number_field :price, placeholder: "1000" %>円</td>
+          </tr>
+          <tr>
+            <td><%= f.label :'販売ステータス' %></td>
+            <td>
+              <%= f.radio_button :is_active, :true %>
+              <%= f.label :is_active, "販売中", value: :true, style: "display: inline-block;" %>
+              <%= f.radio_button :is_active, :false %>
+              <%= f.label :is_active, "販売停止中", value: :false, style: "display: inline-block;" %>
+            </td>
+          </tr>
+        </table>
+        <%= f.submit "新規登録", class:"btn btn-success px-4 mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
