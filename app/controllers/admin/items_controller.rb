@@ -1,11 +1,12 @@
 class Admin::ItemsController < ApplicationController
-  before_action :set_genres, only: [:new]
+  
   def index
     @items=Item.all
   end
 
   def new
     @item=Item.new
+    @genres=Genre.all
   end
 
   def create
@@ -24,9 +25,7 @@ class Admin::ItemsController < ApplicationController
   end
   private
   def item_params
-    params.require(:item).permit(:image, :name, :introduction, :genre, :price, :is_active)
+    params.require(:item).permit(:image, :name, :introduction, :price, :is_active, :genre_id)
   end
-  def set_genres
-    @genres=Genre.all.pluck(:name, :id)
-  end
+  
 end
