@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <th>税込価格<br>(税抜価格)</th>
-          <td><%= @item.price %>（<%= number_with_precision(@item.price*1.1, precision: 3,strip_insignificant_zeros: true) %>）円</td>
+          <td><%= @item.price.to_s(:delimited) %>（<%= number_with_precision(@item.price*1.1, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>）円</td>
         </tr>
         <tr>
           <th>販売ステータス</th>
@@ -33,7 +33,9 @@
           </td>
         </tr>
       </table>
-      <%= link_to '編集する', edit_admin_item_path(@item.id), class:"btn btn-success px-4 mt-3 ml-5" %>
+      <div class="text-center">
+        <%= link_to '編集する', edit_admin_item_path(@item.id), class:"btn btn-success px-4 mt-3" %>
+      </div>
     </div>
   </div>
 </div>

@@ -11,19 +11,19 @@
           </tr>
           <tr>
             <td><%= f.label :'商品名' %></td>
-            <td><%= f.text_field :name, size: 40, placeholder: "商品名" %></td>
+            <td><%= f.text_field :name, placeholder: "商品名", class:"w-50" %></td>
           </tr>
           <tr>
             <td><%= f.label :'商品説明' %></td>
-            <td><%= f.text_area :introduction, size: "40x5", placeholder: "ここに説明文を記述します" %></td>
+            <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", class:"w-50" %></td>
           </tr>
           <tr>
             <td><%= f.label :'ジャンル' %></td>
-            <td><%= f.collection_select :genre_id, @genres, :id, :name, include_blank: '--選択してください--' %></td>
+            <td><%= f.collection_select :genre_id, @genres, :id, :name, include_blank: '--選択してください--', class:"w-50" %></td>
           </tr>
           <tr>
             <td><%= f.label :'税抜価格' %></td>
-            <td><%= f.number_field :price, placeholder: "1000" %>円</td>
+            <td><%= f.number_field :price, placeholder: "1000", class:"w-50" %>円</td>
           </tr>
           <tr>
             <td><%= f.label :'販売ステータス' %></td>
@@ -35,7 +35,9 @@
             </td>
           </tr>
         </table>
-        <%= f.submit "新規登録", class:"btn btn-success px-4 mt-3" %>
+        <div class="text-center">
+          <%= f.submit "新規登録", class:"btn btn-success px-4 mt-3" %>
+        </div>
       <% end %>
     </div>
   </div>
