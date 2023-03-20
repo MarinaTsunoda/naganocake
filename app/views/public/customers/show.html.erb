@@ -3,16 +3,16 @@
     <div class="col-12 mx-auto">
       <h4 class="m-3"><span class="bg-light">マイページ</span></h4>
       <div class="registration-info">
-        <h5>登録情報</h5>
-        <%= link_to '編集する', customers_information_edit_path, class:"btn btn-success px-4 mt-3 inline-block" %>
-        <table cellpadding="5" class="border">
+        <h5 class="d-inline-flex font-weight-bold">登録情報</h5>
+        <%= link_to '編集する', customers_information_edit_path, class:"btn btn-success px-4 ml-4" %>
+        <table cellpadding="10" border="1" style="border-collapse: collapse" class="my-3 w-100">
           <tr>
             <th>氏名</th>
-            <td><%= @customer.last_name %>. <%= @customer.first_name %></td>
+            <td><%= @customer.last_name %>  <%= @customer.first_name %></td>
           </tr>
           <tr>
             <th>カナ</th>
-            <td><%= @customer.last_name_kana %>. <%= @customer.first_name_kana %></td>
+            <td><%= @customer.last_name_kana %>  <%= @customer.first_name_kana %></td>
           </tr>
           <tr>
             <th>郵便番号</th>
@@ -32,14 +32,16 @@
           </tr>
         </table>
       </div>
-      <div class="address">
-        <h5>配送先</h5>
-        <%= link_to '一覧を見る', addresses_path, class:"btn btn-primary px-4 mt-3 inline-block" %>
-      </div>
-      <div class="order">
-        <h5>注文履歴</h5>
-        <%= link_to '一覧を見る', orders_path, class:"btn btn-primary px-4 mt-3 inline-block" %>
-      </div>
+      <table cellpadding="10">
+        <tr>
+          <th><h5 class="font-weight-bold">配送先</h5></th>
+          <td><%= link_to '一覧を見る', addresses_path, class:"btn btn-primary px-4" %></td>
+        </tr>
+        <tr>
+          <th><h5 class="font-weight-bold">注文履歴</h5></th>
+          <td><%= link_to '一覧を見る', orders_path, class:"btn btn-primary px-4" %></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
