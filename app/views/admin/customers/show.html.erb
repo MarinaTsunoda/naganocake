@@ -34,16 +34,16 @@
         <tr>
           <th>会員ステータス</th>
           <td>
-            <% if customer.is_deleted %>
-              <span class="text-secondary font-weight-bold">有効</span>
+            <% if @customer.is_deleted %>
+              <span class="text-secondary font-weight-bold">退会</span>
             <% elsif %>
-              <span class="text-success font-weight-bold">退会</span>
+              <span class="text-success font-weight-bold">有効</span>
             <% end %>
           </td>
         </tr>
       </table>
       <%= link_to '編集する', edit_admin_customer_path(@customer.id), class:"btn btn-success px-4 mt-3 ml-5" %>
-      <%= link_to '注文履歴一覧を見る', admin_order_path(@customer.orders.id), class:"btn btn-primary px-4 mt-3 ml-5" %>
+      <%= link_to '注文履歴一覧を見る', admin_order_path(@customer.orders), class:"btn btn-primary px-4 mt-3 ml-5" %>
     </div>
   </div>
 </div>
