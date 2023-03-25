@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
     @addresses=Address.all
     @address=Address.new
     @customer=current_customer
-    @customer.address=@addresses
+    @addresses=@customer.addresses
   end
 
   def edit

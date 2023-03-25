@@ -1,9 +1,13 @@
 class Public::ItemsController < ApplicationController
   def index
-    @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true)
     @customer=current_customer
-    @genre.id=@item.genre_id
+    # @genre=@items.genre
+    if params[:genre_id].present?
+      @items=Item.where(genre_id: params[:genre_id])
+    else
+      @q = Item.ransack(params[:q])
+      @items = @q.result(distinct: true)
+    end
   end
 
   def show

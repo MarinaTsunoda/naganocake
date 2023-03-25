@@ -12,51 +12,52 @@
 
   <body>
     <header>
-      <% if customer_signed_in? %>
-        <h2>LOGO</h2>
-        ようこそ、<%= @customer.last_name %>さん！
-        <%= link_to "マイページ", customers_my_page_path, class:"btn btn-light px-4" %>
-        <%= link_to "商品一覧", items_path, class:"btn btn-light px-4" %>
-        <%= link_to "カート", cart_items_path, class:"btn btn-light px-4" %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-light px-4" %>
-        <%= search_form_for @q, url: items_path do |f| %>
-          <%= f.search_field :name_or_introduction_cont, class: 'form-control', placeholder: 'Search' %>
-          <%= f.button :type => "submit" do %>
-            <i class='fas fa-search'></i>
-          <% end %>
-        <% end %>
-      <% elsif admin_signed_in? %>
-        <h2>LOGO</h2>
+      <% if admin_signed_in? %>
+      <h2 class="inline-block border">LOGO</h2>
         <%= link_to "商品一覧", admin_items_path, class:"btn btn-light px-4" %>
         <%= link_to "会員一覧", admin_customers_path, class:"btn btn-light px-4" %>
         <%= link_to "注文履歴一覧", top_path, class:"btn btn-light px-4" %>
         <%= link_to "ジャンル一覧", admin_genres_path, class:"btn btn-light px-4" %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-light px-4" %>
-        <%= search_form_for @q, url: admin_items_path do |f| %>
-          <%= f.search_field :name_or_introduction_cont, class: 'form-control', placeholder: 'Search' %>
-          <%= f.button :type => "submit" do %>
-            <i class='fas fa-search'></i>
-          <% end %>
-        <% end %>
+      <% elsif customer_signed_in? %>
+        <h2>LOGO</h2>
+        ようこそ、<%= current_customer.last_name %>さん！
+        <%= link_to "マイページ", customers_my_page_path, class:"btn btn-light px-4" %>
+        <%= link_to "商品一覧", items_path, class:"btn btn-light px-4" %>
+        <%= link_to "カート", cart_items_path, class:"btn btn-light px-4" %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-light px-4" %>
       <% else %>
         <h2>LOGO</h2>
         <%= link_to "About", about_path, class:"btn btn-light px-4" %>
         <%= link_to "商品一覧", items_path, class:"btn btn-light px-4" %>
         <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-light px-4" %>
         <%= link_to "ログイン", new_customer_session_path, class:"btn btn-light px-4" %>
-        <%= search_form_for @q, url: items_path do |f| %>
-          <%= f.search_field :name_or_introduction_cont, class: 'form-control', placeholder: 'Search' %>
-          <%= f.button :type => "submit" do %>
-            <i class='fas fa-search'></i>
-          <% end %>
-        <% end %>
       <% end %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <%= search_form_for @q, url: admin_items_path do |f| %>
+              <table>
+                <tr>
+                  <td><%= f.search_field :name_or_introduction_cont, class: 'form-control', placeholder: 'Search' %></td>
+                  <td>
+                    <%= f.button :type => "submit" do %>
+                      <i class='fas fa-search'></i>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-      
+
     </footer>
   </body>
 </html>

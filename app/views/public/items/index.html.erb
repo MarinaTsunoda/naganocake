@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row">
     
-    <!--ジャンル検索のrender-->
-    <div class="col-2"></div>
+    <%= render 'public/items/genre', genres: @genres %>
     
-    <h3><%= @genre.name %>一覧<span class="h5">（全<%= @genre.item.count %>件）</span></h3>
+    <!--<h3><= @genre.name %>一覧<span class="h5">（全<= @genre.items.count %>件）</span></h3>-->
+    <!--< @genre.items.each do |item| %>-->
+    <!--  <div class="card w-25">-->
+    <!--    <= image_tag item.image, class:"img-fluid" %>-->
+    <!--    <= item.name %>-->
+    <!--    <= item.price %>-->
+    <!--  </div>-->
+    <!--< end %>-->
     <% @items.each do |item| %>
-      <div class="card w-25">
-        <%= image_tag item.image, class:"img-fluid" %>
-        <%= item.name %>
-        <%= item.price %>
-      </div>
+      <%= item.name %>
     <% end %>
     </div>
   </div>
