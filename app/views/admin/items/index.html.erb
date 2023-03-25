@@ -1,14 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mx-auto">
-      <div class="border-bottom border-dark">
-        <h4 class="m-3"><span class="bg-light">商品一覧</span></h4>
-        <%= link_to new_admin_item_path do %>
-          <i class="far fa-plus-circle"></i>
-        <% end %>
-      </div>
+      <h4 class="m-3"><span class="bg-light">商品一覧</span></h4>
+      <%= link_to new_admin_item_path do %>
+        <i class="fas fa-plus-circle fa-pull-right fa-2x" style="color: gray;"></i>
+      <% end %>
       <% @items.each do |item| %>
-        <table style="width:100%">
+        <table style="width:100%" class="border-top border-dark">
           <tr class="table-secondary">
             <th style="width:10%">商品ID</th>
             <th style="width:30%">商品名</th>

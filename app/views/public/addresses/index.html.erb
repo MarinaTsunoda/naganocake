@@ -17,7 +17,7 @@
             <td><%= f.text_field :name, placeholder: "令和道子" %></td>
           </tr>
         </table>
-        <%= f.submit '新規登録', class:"btn btn-success px-4 mt-3" %>
+        <%= f.submit '新規登録', class:"btn btn-success px-4" %>
       <% end %>
       <table cellpadding="10" border="1" style="border-collapse: collapse" class="my-3 w-100">
         <tr>
@@ -28,13 +28,13 @@
         </tr>
         <% @addresses.each do |address| %>
           <tr>
-            <td><%= current_customer.address.postal_code %></td>
-            <td><%= current_customer.address.address %></td>
-            <td><%= current_customer.address.name %></td>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
             <td>
-              <%= link_to '編集する', edit_address_path(address.id), class:"btn btn-success px-4 mt-3" %>
               <%= form_with model: @address, url: address_path(address.id), method: :delete do |f| %>
-                <%= f.submit '削除する', class:"btn btn-success px-4 mt-3" %>
+              <%= link_to '編集する', edit_address_path(address.id), class:"btn btn-success px-4" %>
+                <%= f.submit '削除する', class:"btn btn-danger px-4 ml-3" %>
               <% end %>
             </td>
           </tr>
