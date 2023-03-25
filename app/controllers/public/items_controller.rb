@@ -4,6 +4,7 @@ class Public::ItemsController < ApplicationController
     # @genre=@items.genre
     if params[:genre_id].present?
       @items=Item.where(genre_id: params[:genre_id])
+      # @genre=@items.genre
     else
       @q = Item.ransack(params[:q])
       @items = @q.result(distinct: true)

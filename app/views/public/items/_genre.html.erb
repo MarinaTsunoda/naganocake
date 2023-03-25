@@ -1,6 +1,13 @@
+
 <div class="col-2">
-  <p>ジャンル検索</p>
-  <% Genre.all.each do |genre| %>
-    <%= link_to genre.name, items_path(genre_id: genre.id)%></td>
-  <% end %>
+  <table border=1 frame="box" rules="none" width="100%">
+    <tr class="border-bottom border-dark"><th class="text-center">ジャンル検索</th></tr>
+    <% Genre.all.each do |genre| %>
+      <tr>
+        <td><%= link_to genre.name, items_path(genre_id: genre.id) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
+
+

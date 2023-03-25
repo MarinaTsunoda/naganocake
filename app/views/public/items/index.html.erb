@@ -11,9 +11,21 @@
     <!--    <= item.price %>-->
     <!--  </div>-->
     <!--< end %>-->
-    <% @items.each do |item| %>
-      <%= item.name %>
-    <% end %>
+    <div class="col-10">
+      <% if params[:genre_id].present? %>
+        <h3><= @genre.name %>一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
+      <% else %>
+        <h3>検索結果一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
+      <% end %>
+      <% @items.each do |item| %>
+        <div class="card">
+          <%= image_tag item.image %>
+          <div class="card-body">
+            <%= item.name %><br>
+            ¥<%= item.price %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
