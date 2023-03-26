@@ -1,31 +1,29 @@
 <div class="container">
   <div class="row">
-    
+
     <%= render 'public/items/genre', genres: @genres %>
-    
-    <!--<h3><= @genre.name %>一覧<span class="h5">（全<= @genre.items.count %>件）</span></h3>-->
-    <!--< @genre.items.each do |item| %>-->
-    <!--  <div class="card w-25">-->
-    <!--    <= image_tag item.image, class:"img-fluid" %>-->
-    <!--    <= item.name %>-->
-    <!--    <= item.price %>-->
-    <!--  </div>-->
-    <!--< end %>-->
+
     <div class="col-10">
       <% if params[:genre_id].present? %>
         <h3><= @genre.name %>一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
       <% else %>
         <h3>検索結果一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
       <% end %>
-      <% @items.each do |item| %>
-        <div class="card">
-          <%= image_tag item.image %>
-          <div class="card-body">
-            <%= item.name %><br>
-            ¥<%= item.price %>
+      <div class="card-group"> <!--application.scssにてflex-wrap:wrap;を適用-->
+        <% @items.each do |item| %>
+          <div class="col-3">
+            <div class="card"> <!--application.scssにてmargin-bottom:20px;, height:200px;を適用-->
+              <div class="card-image">
+                <%= image_tag item.image, class:"h-50" %>
+              </div>
+              <div class="card-body">
+                <%= item.name %><br>
+                ¥<%= number_with_precision(item.price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
+              </div>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
