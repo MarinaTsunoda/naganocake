@@ -13,13 +13,15 @@
         <% @items.each do |item| %>
           <div class="col-3">
             <div class="card"> <!--application.scssにてmargin-bottom:20px;, height:200px;を適用-->
+            <%= link_to item_path(item.id) do %>
               <div class="card-image">
-                <%= image_tag item.image, class:"h-50" %>
+                <%= image_tag item.image, class:"img-fluid" %>
               </div>
               <div class="card-body">
                 <%= item.name %><br>
                 ¥<%= number_with_precision(item.price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
               </div>
+            <% end %>
             </div>
           </div>
         <% end %>

@@ -1,4 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mx-auto">
-      <h4 class="m-3"><span class="bg-light">マイページ</span></h4>
+      <h4 class="m-3"><span class="bg-light">注文情報入力</span></h4>
+      <%=form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+        <p><strong>支払方法</strong></p>
+          <%= f.radio_button :payment_method, 0  %>
+          <%= f.label :payment_method, "クレジットカード", value: 0 %>
+          <%= f.radio_button :payment_method, 1 %>
+          <%= f.label :payment_method, "銀行振込", value: 1 %>
+        <p><strong>お届け先</strong></p>
+          <%= f.radio_button :address, 0  %>
+          <%= f.label :address, "ご自身の住所", value: 0 %>
+          <%= f.radio_button :address, 1 %>
+          <%= f.label :address, "登録済住所から選択", value: 1 %>
+          <%= f.radio_button :address, 1 %>
+          <%= f.label :address, "新しいお届け先", value: 1 %>
+      <% end %>
