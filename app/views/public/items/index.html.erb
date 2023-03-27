@@ -5,16 +5,16 @@
 
     <div class="col-10">
       <% if params[:genre_id].present? %>
-        <h3><= @genre.name %>一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
+        <h3><%= Genre.find(params[:genre_id]).name %>一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
       <% else %>
         <h3>検索結果一覧<span class="h5">（全<%= @items.count %>件）</span></h3>
       <% end %>
       <div class="card-group"> <!--application.scssにてflex-wrap:wrap;を適用-->
         <% @items.each do |item| %>
           <div class="col-3">
-            <div class="card"> <!--application.scssにてmargin-bottom:20px;, height:200px;を適用-->
+            <div class="card"> <!--application.scssにてmargin-bottom:20px;を適用-->
             <%= link_to item_path(item.id) do %>
-              <div class="card-image">
+              <div class="card-image"><!--height:100px;を適用-->
                 <%= image_tag item.image, class:"img-fluid" %>
               </div>
               <div class="card-body">

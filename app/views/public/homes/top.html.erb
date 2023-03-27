@@ -3,9 +3,9 @@
     
     <%= render 'public/items/genre', genres: @genres %>
     
-    <div class="col-9 offset-1">
-      <div class="top-image">
-        <div class="top-message">
+    <div class="col-10">
+      <div class="top-image"><!--application.scssにてheight：500px,width:100%;,background-color,background-size:contain;を適用-->
+        <div class="top-message m-auto">
           <p>ようこそ、ながのCAKEへ！</p>
           <p>このサイトは、ケーキ販売のECサイトになります。</p>
           <p>会員でない方も商品の閲覧はできますが、</p>
@@ -14,14 +14,23 @@
       </div>
       <div class="new-items">
         <h3>新着商品</h3>
-        <% @items.each do |item| %>
-          <!---->
-          <div class="card">
-            <%= image_tag item.image, class:"img-fluid" %>
-            <%= item.name %>
-            <%= item.price %>
-          </div>
-        <% end %>
+        <div class="card-group"> <!--application.scssにてflex-wrap:wrap;を適用-->
+          <% @items.each do |item| %>
+            <div class="col-3">
+              <div class="card"> <!--application.scssにてmargin-bottom:20px;, height:200px;を適用-->
+                <%= link_to item_path(item.id) do %>
+                  <div class="card-image">
+                    <%= image_tag item.image, class:"img-fluid" %>
+                  </div>
+                  <div class="card-body">
+                    <%= item.name %><br>
+                    ¥<%= number_with_precision(item.price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

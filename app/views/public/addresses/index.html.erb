@@ -17,7 +17,9 @@
             <td><%= f.text_field :name, placeholder: "令和道子" %></td>
           </tr>
         </table>
-        <%= f.submit '新規登録', class:"btn btn-success px-4" %>
+        <div class="text-right">
+          <%= f.submit '新規登録', class:"btn btn-success px-4" %>
+        </div>
       <% end %>
       <table cellpadding="10" border="1" style="border-collapse: collapse" class="my-3 w-100">
         <tr>
