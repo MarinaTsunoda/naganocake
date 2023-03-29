@@ -20,7 +20,7 @@
           <td><%= image_tag cart_item.item.image, size:"60x40" %> <%= cart_item.item.name %></td>
           <td><%= number_with_precision(cart_item.item.with_tax_price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
           <td>
-            <%= form_with model: @cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
               <span><%= f.select :amount, [*1..10], selected: cart_item.amount %></span>
               <%= f.submit '変更', class:"btn btn-success ml-2" %>
             <% end %>

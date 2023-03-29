@@ -31,15 +31,15 @@
             <table class="ml-2" style="width:100%;">
               <tr>
                 <th style="width:30%;">郵便番号(ハイフンなし)</th>
-                <td style="width:70%;"><%= f.text_field :postal_code, placeholder: "0000000" %></td>
+                <td style="width:70%;"><%= f.text_field :shipping_postal_code, placeholder: "0000000" %></td>
               </tr>
               <tr>
                 <th>住所</th>
-                <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class:"w-100" %></td>
+                <td><%= f.text_field :shipping_address, placeholder: "東京都渋谷区代々木神園町0-0", class:"w-100" %></td>
               </tr>
               <tr>
                 <th>宛名</th>
-                <td><%= f.text_field :name, placeholder: "令和道子" %></td>
+                <td><%= f.text_field :shipping_name, placeholder: "令和道子" %></td>
               </tr>
             </table>
           </div>
