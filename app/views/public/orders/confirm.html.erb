@@ -2,47 +2,51 @@
   <div class="row">
     <div class="col-12 mx-auto">
       <h4 class="m-3"><span class="bg-light">注文情報確認</span></h4>
-      <table border="1" cellpadding="10">
-        <tr>
-          <th width="40%">商品名</th>
-          <th width="20%">単価(税込)</th>
-          <th width="20%">数量</th>
-          <th width="20%">小計</th>
-        </tr>
-        <% @sum = 0 %>
-        <% @cart_items.each do |cart_item| %>
+      <div style="width:70%;," class="d-inline-block">
+        <table border="1" cellpadding="10" style="width:100%;">
           <tr>
-            <td><%= image_tag cart_item.item.image, size:"60x40" %> <%= cart_item.item.name %></td>
-            <td><%= number_with_precision(cart_item.item.with_tax_price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= number_with_precision(cart_item.subtotal, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
-            <% @sum += cart_item.subtotal %>
+            <th width="55%">商品名</th>
+            <th width="16%">単価(税込)</th>
+            <th width="13%">数量</th>
+            <th width="16%">小計</th>
           </tr>
-        <% end %>
-      </table>
-      <table border="1" cellpadding="10">
-        <tr>
-          <th>送料</th>
-          <td>800</td>
-        </tr>
-        <tr>
-          <th>商品合計</th>
-          <td><%= @sum %></td>
-        </tr>
-        <tr>
-          <th>請求金額</th>
-          <td>
-            <%= @sum + 800 %>
-          </td>
-        </tr>
-      </table>
-      <table>
+          <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= image_tag cart_item.item.image, size:"60x40" %> <%= cart_item.item.name %></td>
+              <td><%= number_with_precision(cart_item.item.with_tax_price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= number_with_precision(cart_item.subtotal, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
+              <% @sum += cart_item.subtotal %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div style="width:20%;," class="d-inline-block ml-4">
+        <table border="1" cellpadding="10" style="width:100%;">
+          <tr>
+            <th>送料</th>
+            <td>800</td>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @sum %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td>
+              <%= @sum + 800 %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <table cellpadding="10">
         <tr>
           <th><strong>支払方法</strong></th>
-          <td><%= @order.payment_method_i18n %></td>
+          <td valign="top"><%= @order.payment_method_i18n %></td>
         </tr>
         <tr>
-          <th><strong>お届け先</strong></th>
+          <th valign="top"><strong>お届け先</strong></th>
           <td>
             〒<%= @order.shipping_postal_code %> <%= @order.shipping_address %><br>
             <%= @order.shipping_name %>
@@ -54,11 +58,13 @@
         <%= f.hidden_field :order_status, :value => "waiting_for_payment" %>
         <%= f.hidden_field :postage, :value => 800 %>
         <%= f.hidden_field :total_amount, :value => @sum + 800 %>
-        <%= f.submit '注文を確定する', class:"btn btn-success px-4" %>
         <%= f.hidden_field :payment_method, value:  @order.payment_method %>
         <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code %>
         <%= f.hidden_field :shipping_address, value: @order.shipping_address%>
         <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+        <div class="text-center mt-3">
+          <%= f.submit '注文を確定する', class:"btn btn-success px-4" %>
+        </div>
       <% end %>
     </div>
   </div>

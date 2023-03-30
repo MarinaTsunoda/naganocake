@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, except: [:destroy]
   end
-  get 'admin' => 'homes#top', as:'top'
+  get 'admin' => 'admin/homes#top', as:'top'
 
   scope module: :public do
     resources :addresses, except: [:new, :show]
