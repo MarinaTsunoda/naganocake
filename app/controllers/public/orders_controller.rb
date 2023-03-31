@@ -37,7 +37,7 @@ class Public::OrdersController < ApplicationController
       @order_details.making_status = 0
       @order_details.save
     end
-    CartItem.destroy_all
+    current_customer.cart_items.destroy_all
     redirect_to orders_complete_path
   end
 
@@ -46,6 +46,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @sum = 0
     @order=Order.find(params[:id])
     @order_details=@order.order_details.all
   end

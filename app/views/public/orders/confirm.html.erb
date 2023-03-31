@@ -30,12 +30,12 @@
           </tr>
           <tr>
             <th>商品合計</th>
-            <td><%= @sum %></td>
+            <td><%= number_with_precision(@sum, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %></td>
           </tr>
           <tr>
             <th>請求金額</th>
             <td>
-              <%= @sum + 800 %>
+              <%= number_with_precision(@sum + 800, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
             </td>
           </tr>
         </table>

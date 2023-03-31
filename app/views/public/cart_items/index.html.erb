@@ -3,7 +3,7 @@
     <div class="col-12 mx-auto">
       <h4 class="m-3"><span class="bg-light">ショッピングカート</span></h4>
       <div class="text-right mb-3">
-        <%= form_with model: @cart_item, url: cart_items_destroy_all_path, method: :delete do |f| %>
+        <%= form_with model: CartItem, url: cart_items_destroy_all_path, method: :delete do |f| %>
           <%= f.submit 'カートを空にする', class:"btn btn-danger px-4 ml-2" %>
         <% end %>
       </div>

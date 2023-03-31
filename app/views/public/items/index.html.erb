@@ -19,7 +19,7 @@
               </div>
               <div class="card-body">
                 <%= item.name %><br>
-                ¥<%= number_with_precision(item.price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
+                ¥<%= number_with_precision(item.with_tax_price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
               </div>
             <% end %>
             </div>

@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     
-    <!--ジャンル検索のrender-->
-    <!--<div class="col-2"></div>-->
+    <%= render 'public/items/genre', genres: @genres %>
     
     <div class="col-4">
       <%= image_tag @item.image, class:"img-fluid" %>
@@ -10,7 +9,7 @@
     <div class="col-6">
       <h3 class="mb-3"><%= @item.name %></h3>
       <h5><%= @item.introduction %></h5>
-      <h3 class="my-5">¥<%= @item.with_tax_price %><span class="h6">（税込）</span></h3>
+      <h3 class="my-5">¥<%= number_with_precision(@item.with_tax_price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %><span class="h6">（税込）</span></h3>
       <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
         <span class="h5"><%= f.select :amount, [*1..10], include_blank: '個数選択' %></span>

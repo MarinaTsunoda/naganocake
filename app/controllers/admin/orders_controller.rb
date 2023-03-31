@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
   def show
+    @sum = 0
     @order=Order.find(params[:id])
     @order_details=@order.order_details.all
     @order_detail=OrderDetail.find(params[:id])
