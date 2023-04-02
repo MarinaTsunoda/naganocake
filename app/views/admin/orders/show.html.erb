@@ -6,7 +6,7 @@
         <tr>
           <th>購入者</th>
           <td>
-            <%= link_to top_path(customer_id: @order.customer.id) do %>
+            <%= link_to admin_customer_path(@order.customer.id) do %>
               <%= @order.customer.last_name %><%= @order.customer.first_name %></td>
             <% end %>
         </tr>
@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <th>配送先</th>
-          <td><%= @order.shipping_postal_code %> <%= @order.shipping_address %><br><%= @order.shipping_name %></td>
+          <td>〒<%= @order.shipping_postal_code %> <%= @order.shipping_address %><br><%= @order.shipping_name %></td>
         </tr>
         <tr>
           <th>支払方法</th>
@@ -49,7 +49,7 @@
               <td><%= order_detail.amount %></td>
               <td><%= order_detail.subtotal.to_s(:delimited) %></td>
               <td>
-                <%= form_with model: @order_detail, url:admin_order_detail_path(@order_detail.id), method: :patch do |f| %>
+                <%= form_with model: order_detail, url:admin_order_detail_path(order_detail.id), method: :patch do |f| %>
                   <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, {} %>
                   <%= f.submit '更新', class:"btn btn-success ml-2" %>
                 <% end %>
@@ -66,7 +66,7 @@
               <% @order_details.each do |order_detail| %>
                 <% @sum += order_detail.subtotal %>
               <% end %>
-            <%= number_with_precision(@sum, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>円
+            <%= @sum.to_s(:delimited) %>円
           </td>
         </tr>
         <tr>

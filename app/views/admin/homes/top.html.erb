@@ -3,31 +3,31 @@
     <div class="col-12 mx-auto">
       <div class="border-bottom border-dark">
         <% if params[:customer_id].present? %>
-          <h4 class="m-3"><span class="bg-light"><%= Order.find(params[:customer_id]).customer.last_name %><%= Order.find(params[:customer_id]).customer.first_name %>さんの注文履歴</span></h4>
+          <h4 class="m-3"><span class="bg-light"><%= @customer.last_name %><%= @customer.first_name %>さんの注文履歴</span></h4>
         <% else %>
           <h4 class="m-3"><span class="bg-light">注文履歴一覧</span></h4>
         <% end %>
       </div>
-      <% @orders.each do |order| %>
-        <table style="width:100%">
+        <table cellpadding="5" style="width:100%">
           <tr class="table-secondary">
             <th style="width:30%">購入日時</th>
             <th style="width:20%">購入者</th>
             <th style="width:20%">注文個数</th>
             <th style="width:30%">注文ステータス</th>
           </tr>
-          <tr class="border-top">
-            <td>
-              <%= link_to admin_order_path(order.id) do %>
-                <%= order.created_at.strftime('%Y/%m/%d %T') %>
-              <% end %>
-            </td>
-            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-            <td><%= order.order_details.sum(:amount) %></td>
-            <td><%= order.order_status_i18n %></td>
-          </tr>
+          <% @orders.each do |order| %>
+            <tr class="border-top">
+              <td>
+                <%= link_to admin_order_path(order.id) do %>
+                  <%= order.created_at.strftime('%Y/%m/%d %T') %>
+                <% end %>
+              </td>
+              <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+              <td><%= order.order_details.sum(:amount) %></td>
+              <td><%= order.order_status_i18n %></td>
+            </tr>
+          <% end %>
         </table>
-      <% end %>
       <%= paginate @orders %>
     </div>
   </div>

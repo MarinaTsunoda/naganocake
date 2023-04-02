@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
   @q = Item.ransack(params[:q])
   end
 
-  def after_sign_in_path_for(resource)
-   case resource
-   when Admin
-     top_path
-   when Customer
-     customers_my_page_path
-   end
+ def after_sign_in_path_for(resource)
+    case resource
+    when Admin
+      top_path
+    when Customer
+      customers_my_page_path
+    end
  end
 
  def after_sign_out_path_for(resource)

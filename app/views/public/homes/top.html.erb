@@ -4,7 +4,7 @@
     <%= render 'public/items/genre', genres: @genres %>
 
     <div class="col-10">
-      <div class="top-image"><!--application.scssにてheight：500px,width:100%;,background-color,background-size:contain;を適用-->
+      <div class="top-image"><!--application.scssにてbackground-imageを指定-->
         <div class="top-message m-auto">
           <p>ようこそ、ながのCAKEへ！</p>
           <p>このサイトは、ケーキ販売のECサイトになります。</p>
@@ -17,13 +17,13 @@
         <div class="card-group"> <!--application.scssにてflex-wrap:wrap;を適用-->
           <% @items.each do |item| %>
             <div class="col-3">
-              <div class="card"> <!--application.scssにてmargin-bottom:20px;, height:200px;を適用-->
+              <div class="card h-100"> <!--application.scssにてmargin-bottom:20px;を適用-->
                 <%= link_to item_path(item.id) do %>
                   <div class="card-image">
-                    <%= image_tag item.image, class:"img-fluid" %>
+                    <%= image_tag item.image, height:'130px', width:'100%' %>
                   </div>
                   <div class="card-body">
-                    <%= item.name %><br>
+                    <h6 class="card-title"><%= item.name %></h6>
                     ¥<%= number_with_precision(item.price, delimiter: ",", precision: 3,strip_insignificant_zeros: true) %>
                   </div>
                 <% end %>

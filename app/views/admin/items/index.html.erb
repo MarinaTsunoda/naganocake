@@ -5,8 +5,7 @@
       <%= link_to new_admin_item_path do %>
         <i class="fas fa-plus-circle fa-pull-right fa-2x" style="color: gray;"></i>
       <% end %>
-      <% @items.each do |item| %>
-        <table style="width:100%" class="border-top border-dark">
+        <table cellpadding="5" style="width:100%" class="border-top border-dark">
           <tr class="table-secondary">
             <th style="width:10%">商品ID</th>
             <th style="width:30%">商品名</th>
@@ -14,21 +13,22 @@
             <th style="width:30%">ジャンル</th>
             <th style="width:20%">ステータス</th>
           </tr>
-          <tr>
-            <td><%= item.id %></td>
-            <td><%= link_to item.name, admin_item_path(item.id) %></td>
-            <td><%= item.price.to_s(:delimited) %></td>
-            <td><%= item.genre.name %></td>
-            <td>
-              <% if item.is_active %>
-                <span class="text-success font-weight-bold">販売中</span>
-              <% elsif %>
-                <span class="text-secondary font-weight-bold">販売停止中</span>
-              <% end %>
-            </td>
-          </tr>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admin_item_path(item.id) %></td>
+              <td><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.genre.name %></td>
+              <td>
+                <% if item.is_active %>
+                  <span class="text-success font-weight-bold">販売中</span>
+                <% elsif %>
+                  <span class="text-secondary font-weight-bold">販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </table>
-      <% end %>
       <%= paginate @items %>
     </div>
   </div>
